@@ -1,0 +1,52 @@
+<cv>
+    <title> Title </title>
+    <personal>
+        <info>
+            <name> John Doe </name>
+            <email> john.doe@example.com </email>
+            <tel> 0123456789 </tel>
+            <github> github.com/JohnDoe </github>
+            <linkedin> linkedin.com/JohnDoe </linkedin>
+            <website> johndoe.com </website>
+        </info>
+        <education>
+            <school>
+                <name> University of life </name>
+                <ending> Higher education </ending>
+                <duration> 1982 - now </duration>
+            </school>
+        </education>
+        <desc> Hello i am very good at computers hire me please </desc>
+    </personal>
+    <main>
+        <experience>
+            <job>
+                <title> Manager of important things </title>
+                <company> FAANG bro trust me </company>
+                <duration> 2024 - 2025 </duration>
+            </job>
+        </experience>
+        <skills>
+            <skill>
+                <name> MS office </name>
+                <level> Ultra Super High </level>
+            </skill>
+            <skill>
+                <name> Python </name>
+                <level> used it once </level>
+            </skill>
+            <list> Docker, github, rust, C </list>
+        </skills>
+        <projects>
+            <project>
+                <name> calc (its slang for calculator) </name>
+                <desc> Its a calculator like cmon </desc>
+                <tech> python, algebra, chatgpt </tech>
+            </project>
+        </projects>
+        <awards>
+            <name> Hackathon last place </name>
+            <name> Won mister wet tshirt </name>
+        </awards>
+    </main>
+</cv>

@@ -1,0 +1,154 @@
+use crate::ast::{CV, Personal, Info, School, Education, 
+                 Main, Job, Skills, Skill, Project};
+
+grammar;
+
+// Top-level CV
+pub CV: CV = {
+    "<cv>" 
+        <pers:Personal> 
+        <mai:Main>
+    "</cv>" =>
+        CV { personal: pers, main: mai }
+};
+
+// Personal section
+Personal: Personal = {
+    "<personal>" <inf:Info> <edu:Education?> <des:Desc?> "</personal>" =>
+        Personal { info: inf, education: edu, desc: des }
+};
+
+// Info section
+Info: Info = {
+    "<info>"
+        "<name>" <name:TEXT> "</name>"
+        <email:Email?>
+        <tel:Tel?>
+        <github:Github?>
+        <linkedin:Linkedin?>
+        <website:Website?>
+    "</info>" =>
+        Info { name, email, tel, github, linkedin, website }
+};
+
+Website: String = {
+    "<website>" <website:TEXT> "</website>" => website
+}
+
+Linkedin: String = {
+    "<linkedin>" <linkedin:TEXT> "</linkedin>" => linkedin
+}
+
+Github: String = {
+    "<github>" <github:TEXT> "</github>" => github
+}
+
+Tel: String = {
+    "<tel>" <tel:TEXT> "</tel>" => tel
+}
+
+Email: String = {
+    "<email>" <email:TEXT> "</email>" => email
+}
+
+Education: Education = {
+    "<education>" <schools:School*> "</education>" =>
+        Education { school: schools }
+};
+
+School: School = {
+    "<school>"
+        "<name>" <name:TEXT> "</name>"
+        <ending:Ending?>
+        "<duration>" <duration:TEXT> "</duration>"
+    "</school>" =>
+        School { name, ending, duration }
+};
+
+Ending: String = {
+    "<ending>" <ending:TEXT> "</ending>" => ending
+}
+
+// Main section
+Main: Main = {
+    "<main>"
+        <experience:Experience?>
+        <skills:SkillList?>
+        <projects:Projects?>
+        <awards:Awards?>
+    "</main>" =>
+        Main { experience, skills, projects, awards }
+};
+
+Awards: Vec<String> = {
+    "<awards>" <awards:Award+> "</awards>" => awards
+}
+
+Projects: Vec<Project> = {
+    "<projects>" <projects:Project+> "</projects>" => projects
+}
+
+SkillList: Skills = {
+    "<skills>" <skills:Skill+?> <lst:List?> "</skills>" => Skills { highlighted: skills, list: lst }
+}
+
+Experience: Vec<Job> = {
+    "<experience>" <experience:Job+> "</experience>" => experience
+}
+
+// Awards
+
+Award: String = {
+    "<name>" <name:TEXT> "</name>" =>
+    name
+};
+
+// Skills
+
+List: String = {
+    "<list>" <names:TEXT> "</list>" =>
+    names
+};
+
+Skill: Skill = {
+    "<skill>"
+        "<name>" <name:TEXT> "</name>"
+        "<level>" <level:TEXT> "</level>"
+    "</skill>" =>
+    Skill { name, level }
+};
+
+// Job
+Job: Job = {
+    "<job>"
+        "<title>" <title:TEXT> "</title>"
+        "<company>" <company:TEXT> "</company>"
+        <duration:Duration?>
+        <desc:Desc?>
+    "</job>" =>
+        Job { title, company, duration, desc }
+};
+
+Duration: String = {
+    "<duration>" <duration:TEXT> "</duration>" => duration
+}
+
+// Project
+Project: Project = {
+    "<project>"
+        "<name>" <name:TEXT> "</name>"
+        <desc:Desc?>
+        <tech:Tech?>
+    "</project>" =>
+        Project { name, desc, tech }
+};
+
+Tech: String = {
+    "<tech>" <tech:TEXT> "</tech>" => tech
+}
+
+Desc: String = {
+    "<desc>" <t:TEXT> "</desc>" => t
+};
+
+TEXT: String = { r"[^<>]+" => <>.trim().to_string() };

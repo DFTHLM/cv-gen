@@ -1,0 +1,36 @@
+% ============================================================
+% IMPORTANT: This file defines the macros used by cv-gen.
+% DO NOT rename or remove macros unless you also update the Rust source,
+% otherwise the PDF compilation will fail.
+% Place any style tweaks here.
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem} % for compact lists
+\usepackage{xcolor}   % colors for highlighting
+\usepackage{titlesec} % custom section formats
+
+% --- Macros for CV formatting ---
+% Title of the CV
+\newcommand{\cvtitle}[1]{\begin{center}\Huge\bfseries #1\end{center}\vspace{1em}}
+
+% Name (big and bold)
+\newcommand{\cvname}[1]{\textbf{\Large #1}}
+
+% Contact info line
+\newcommand{\cvcontact}[2]{\faIcon{#1}~#2\\}
+
+% Section headers (Education, Experience, etc.)
+\newcommand{\cvsection}[1]{\vspace{1em}\textbf{\large #1}\vspace{0.5em}\\}
+
+% Job / Project entry
+\newcommand{\cvitem}[2]{\textbf{#1} \hfill {\small #2}\\}
+
+% Duration formatting
+\newcommand{\cvduration}[1]{\hfill {\small #1}}
+
+% Description block
+\newcommand{\cvdesc}[1]{\par\smallskip #1\par}
+
